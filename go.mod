@@ -1,8 +1,6 @@
 module github.com/giantswarm/policy-api
 
-go 1.21.4
-
-toolchain go1.22.1
+go 1.22.2
 
 require (
 	github.com/giantswarm/kyverno-policy-operator v0.0.7
