@@ -60,10 +60,12 @@ spec:
                       items:
                         type: string
                       type: array
+                      x-kubernetes-list-type: atomic
                     namespaces:
                       items:
                         type: string
                       type: array
+                      x-kubernetes-list-type: atomic
                   required:
                   - kind
                   - names
@@ -77,5 +79,3 @@ spec:
         type: object
     served: true
     storage: true
-    subresources:
-      status: {}

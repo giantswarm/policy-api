@@ -30,7 +30,7 @@ type PolicyManifestSpec struct {
 }
 
 // +kubebuilder:object:root=true
-// +kubebuilder:resource:shortName=polman
+// +kubebuilder:resource:shortName=polman,scope=Cluster
 // PolicyManifest is the Schema for the policymanifests API
 // +k8s:openapi-gen=true
 type PolicyManifest struct {

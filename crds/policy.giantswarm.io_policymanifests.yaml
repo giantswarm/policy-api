@@ -11,8 +11,10 @@ spec:
     kind: PolicyManifest
     listKind: PolicyManifestList
     plural: policymanifests
+    shortNames:
+    - polman
     singular: policymanifest
-  scope: Namespaced
+  scope: Cluster
   versions:
   - name: v1alpha1
     schema:
@@ -54,10 +56,12 @@ spec:
                       items:
                         type: string
                       type: array
+                      x-kubernetes-list-type: atomic
                     namespaces:
                       items:
                         type: string
                       type: array
+                      x-kubernetes-list-type: atomic
                   required:
                   - kind
                   - names
@@ -75,10 +79,12 @@ spec:
                       items:
                         type: string
                       type: array
+                      x-kubernetes-list-type: atomic
                     namespaces:
                       items:
                         type: string
                       type: array
+                      x-kubernetes-list-type: atomic
                   required:
                   - kind
                   - names
@@ -98,5 +104,3 @@ spec:
         type: object
     served: true
     storage: true
-    subresources:
-      status: {}
