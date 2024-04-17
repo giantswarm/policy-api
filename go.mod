@@ -6,7 +6,7 @@ toolchain go1.22.1
 
 require (
 	github.com/ahmetb/gen-crd-api-reference-docs v0.3.0
-	github.com/onsi/ginkgo/v2 v2.14.0
+	github.com/onsi/ginkgo/v2 v2.17.1
 	github.com/onsi/gomega v1.30.0
 	k8s.io/apimachinery v0.29.0
 	k8s.io/client-go v0.29.0
