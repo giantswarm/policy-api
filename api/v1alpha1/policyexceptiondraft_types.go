@@ -22,9 +22,9 @@ import (
 
 //+kubebuilder:object:root=true
 //+kubebuilder:resource:shortName=polexdraft
-//+kubebuilder:subresource:status
 
 // PolicyExceptionDraft is the Schema for the policyexceptiondrafts API
+// +k8s:openapi-gen=true
 type PolicyExceptionDraft struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

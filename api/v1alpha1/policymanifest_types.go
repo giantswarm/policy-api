@@ -29,10 +29,10 @@ type PolicyManifestSpec struct {
 	AutomatedExceptions []Target `json:"automatedExceptions"`
 }
 
-//+kubebuilder:object:root=true
-//+kubebuilder:subresource:status
-
+// +kubebuilder:object:root=true
+// +kubebuilder:resource:shortName=polman,scope=Cluster
 // PolicyManifest is the Schema for the policymanifests API
+// +k8s:openapi-gen=true
 type PolicyManifest struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

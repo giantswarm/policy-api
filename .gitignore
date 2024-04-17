@@ -7,6 +7,9 @@
 bin/*
 Dockerfile.cross
 
+# Ignore config repo
+config/*
+
 # Test binary, built with `go test -c`
 *.test
 
