@@ -20,8 +20,16 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+//+kubebuilder:object:root=true
 //+kubebuilder:resource:shortName=gspolex
-//+kubebuilder:subresource:status
+
+// PolicyException is the Schema for the policyexceptions API
+type PolicyException struct {
+	metav1.TypeMeta   `json:",inline"`
+	metav1.ObjectMeta `json:"metadata,omitempty"`
+
+	Spec PolicyExceptionSpec `json:"spec,omitempty"`
+}
 
 // PolicyExceptionSpec defines the desired state of PolicyException
 type PolicyExceptionSpec struct {
@@ -30,16 +38,6 @@ type PolicyExceptionSpec struct {
 
 	// Targes defines the list of target workloads where the exceptions will be applied
 	Targets []Target `json:"targets"`
-}
-
-//+kubebuilder:object:root=true
-
-// PolicyException is the Schema for the policyexceptions API
-type PolicyException struct {
-	metav1.TypeMeta   `json:",inline"`
-	metav1.ObjectMeta `json:"metadata,omitempty"`
-
-	Spec PolicyExceptionSpec `json:"spec,omitempty"`
 }
 
 // Target defines a resource to which a PolicyException applies
