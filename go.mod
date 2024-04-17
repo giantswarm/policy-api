@@ -5,7 +5,6 @@ go 1.21.4
 toolchain go1.22.1
 
 require (
-	github.com/giantswarm/kyverno-policy-operator v0.0.7
 	github.com/onsi/ginkgo/v2 v2.14.0
 	github.com/onsi/gomega v1.30.0
 	k8s.io/apimachinery v0.29.0
