@@ -25,8 +25,8 @@ type PolicyManifestSpec struct {
 	// Foo is an example field of PolicyManifest. Edit policymanifest_types.go to remove/update
 	Mode                string   `json:"mode"`
 	Args                []string `json:"args"`
-	Exceptions          []Target `json:"exceptions"`
-	AutomatedExceptions []Target `json:"automatedExceptions"`
+	Exceptions          []Target `json:"exceptions,omitempty"`
+	AutomatedExceptions []Target `json:"automatedExceptions,omitempty"`
 }
 
 // +kubebuilder:object:root=true
