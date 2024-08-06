@@ -97,8 +97,6 @@ spec:
                 type: string
             required:
             - args
-            - automatedExceptions
-            - exceptions
             - mode
             type: object
         type: object
