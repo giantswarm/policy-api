@@ -28,7 +28,7 @@ type AutomatedExceptionStatus struct {
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
-//+kubebuilder:resource:shortName=autopolex,scope=Cluster
+//+kubebuilder:resource:shortName=autopolex
 
 // AutomatedException is the Schema for the automatedexceptions API
 type AutomatedException struct {

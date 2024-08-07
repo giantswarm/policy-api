@@ -14,7 +14,7 @@ spec:
     shortNames:
     - autopolex
     singular: automatedexception
-  scope: Cluster
+  scope: Namespaced
   versions:
   - name: v1alpha1
     schema:
