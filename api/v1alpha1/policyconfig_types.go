@@ -20,34 +20,32 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// AutomatedExceptionStatus defines the observed state of AutomatedException
-type AutomatedExceptionStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
+// PolicyConfigSpec defines the desired state of PolicyConfig
+type PolicyConfigSpec struct {
+	PolicyName  string `json:"policyName,omitempty"`
+	PolicyState string `json:"policyState,omitempty"`
 }
 
-//+kubebuilder:object:root=true
-//+kubebuilder:subresource:status
-//+kubebuilder:resource:shortName=autopolex
-
-// AutomatedException is the Schema for the automatedexceptions API
-type AutomatedException struct {
+// +kubebuilder:object:root=true
+// +kubebuilder:resource:shortName=gspol;gspolicy,scope=Cluster
+// PolicyConfig is the Schema for the PolicyConfigs API
+// +k8s:openapi-gen=true
+type PolicyConfig struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   PolicyExceptionSpec      `json:"spec,omitempty"`
-	Status AutomatedExceptionStatus `json:"status,omitempty"`
+	Spec PolicyConfigSpec `json:"spec,omitempty"`
 }
 
 //+kubebuilder:object:root=true
 
-// AutomatedExceptionList contains a list of AutomatedException
-type AutomatedExceptionList struct {
+// PolicyConfigList contains a list of PolicyConfigs
+type PolicyConfigList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []AutomatedException `json:"items"`
+	Items           []PolicyConfig `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&AutomatedException{}, &AutomatedExceptionList{})
+	SchemeBuilder.Register(&PolicyConfig{}, &PolicyConfigList{})
 }

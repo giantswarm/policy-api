@@ -11,6 +11,8 @@ spec:
     kind: AutomatedException
     listKind: AutomatedExceptionList
     plural: automatedexceptions
+    shortNames:
+    - autopolex
     singular: automatedexception
   scope: Namespaced
   versions:

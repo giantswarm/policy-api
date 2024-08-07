@@ -23,8 +23,8 @@ import (
 // PolicyManifestSpec defines the desired state of PolicyManifest
 type PolicyManifestSpec struct {
 	// Foo is an example field of PolicyManifest. Edit policymanifest_types.go to remove/update
-	Mode                string   `json:"mode"`
-	Args                []string `json:"args"`
+	Mode                string   `json:"mode,omitempty"`
+	Args                []string `json:"args,omitempty"`
 	Exceptions          []Target `json:"exceptions,omitempty"`
 	AutomatedExceptions []Target `json:"automatedExceptions,omitempty"`
 }

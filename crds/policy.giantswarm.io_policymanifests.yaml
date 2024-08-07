@@ -95,9 +95,6 @@ spec:
                 description: Foo is an example field of PolicyManifest. Edit policymanifest_types.go
                   to remove/update
                 type: string
-            required:
-            - args
-            - mode
             type: object
         type: object
     served: true
