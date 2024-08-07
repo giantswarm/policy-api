@@ -11,8 +11,10 @@ spec:
     kind: AutomatedException
     listKind: AutomatedExceptionList
     plural: automatedexceptions
+    shortNames:
+    - autopolex
     singular: automatedexception
-  scope: Namespaced
+  scope: Cluster
   versions:
   - name: v1alpha1
     schema:
