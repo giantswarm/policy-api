@@ -27,7 +27,7 @@ type PolicyConfigSpec struct {
 }
 
 // +kubebuilder:object:root=true
-// +kubebuilder:resource:shortName=gspol;gspolicy,scope=Cluster
+// +kubebuilder:resource:shortName=gspolconfig,scope=Cluster
 // PolicyConfig is the Schema for the PolicyConfigs API
 // +k8s:openapi-gen=true
 type PolicyConfig struct {
