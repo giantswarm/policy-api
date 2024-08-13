@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Change `PolicyConfig` shortNames to avoid collision with `Policy` CRD.
+
 ## [0.0.3] - 2024-08-07
 
 ### Added
