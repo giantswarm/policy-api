@@ -13,7 +13,7 @@ require (
 	k8s.io/code-generator v0.31.0
 	k8s.io/kube-openapi v0.0.0-20240827152857-f7e401e7b4c2
 	sigs.k8s.io/controller-runtime v0.19.0
-	sigs.k8s.io/controller-tools v0.14.0
+	sigs.k8s.io/controller-tools v0.16.1
 	sigs.k8s.io/structured-merge-diff/v4 v4.4.1
 )
 
@@ -23,7 +23,7 @@ require (
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/emicklei/go-restful/v3 v3.12.1 // indirect
 	github.com/evanphx/json-patch/v5 v5.9.0 // indirect
-	github.com/fatih/color v1.16.0 // indirect
+	github.com/fatih/color v1.17.0 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/fxamacker/cbor/v2 v2.7.0 // indirect
 	github.com/go-logr/logr v1.4.2 // indirect
