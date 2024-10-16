@@ -34,6 +34,6 @@ var (
 	// AddToScheme adds the types in this group-version to the given scheme.
 	AddToScheme = SchemeBuilder.AddToScheme
 
-	// ExemptionLabel is the label used to mark resources that should be exempt from certain policies.
+	// ExemptionLabel is the name of the label which, if set to false on a supported policy resource, bypasses the automatic generation of exceptions to this policy for Giant Swarm resources.
 	ExemptionLabel = "policy.giantswarm.io/giantswarm-exempt"
 )
