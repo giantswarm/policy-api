@@ -33,4 +33,7 @@ var (
 
 	// AddToScheme adds the types in this group-version to the given scheme.
 	AddToScheme = SchemeBuilder.AddToScheme
+
+	// ExemptionLabel is the label used to mark resources that should be exempt from certain policies.
+	ExemptionLabel = "policy.giantswarm.io/giantswarm-exempt"
 )
