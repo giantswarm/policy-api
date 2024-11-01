@@ -14,7 +14,7 @@ require (
 	k8s.io/kube-openapi v0.0.0-20240827152857-f7e401e7b4c2
 	sigs.k8s.io/controller-runtime v0.19.1
 	sigs.k8s.io/controller-tools v0.16.5
-	sigs.k8s.io/structured-merge-diff/v4 v4.4.1
+	sigs.k8s.io/structured-merge-diff/v4 v4.4.2
 )
 
 require (
