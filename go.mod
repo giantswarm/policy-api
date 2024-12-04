@@ -2,7 +2,7 @@ module github.com/giantswarm/policy-api
 
 go 1.22.0
 
-toolchain go1.23.3
+toolchain go1.23.4
 
 require (
 	github.com/ahmetb/gen-crd-api-reference-docs v0.3.0
