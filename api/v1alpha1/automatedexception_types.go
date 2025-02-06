@@ -26,9 +26,13 @@ type AutomatedExceptionStatus struct {
 	// Important: Run "make" to regenerate code after modifying this file
 }
 
-//+kubebuilder:object:root=true
-//+kubebuilder:subresource:status
-//+kubebuilder:resource:shortName=autopolex
+// +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:resource:shortName=autopolex
+// +kubebuilder:printcolumn:name="Namespaces",type=string,JSONPath=`.spec.targets[].namespaces`
+// +kubebuilder:printcolumn:name="Kind",type=string,JSONPath=`.spec.targets[].kind`
+// +kubebuilder:printcolumn:name="Names",type=string,JSONPath=`.spec.targets[].names`
+// +kubebuilder:printcolumn:name="Policies",type=string,JSONPath=`.spec.policies`
 
 // AutomatedException is the Schema for the automatedexceptions API
 type AutomatedException struct {
