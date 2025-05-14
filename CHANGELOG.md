@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Resolve updated code linter findings.
+
+### Changed
+
 - Disabled logger development mode to avoid panicking
 
 ## [0.0.5] - 2024-08-29

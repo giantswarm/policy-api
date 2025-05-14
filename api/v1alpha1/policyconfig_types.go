@@ -26,9 +26,9 @@ type PolicyConfigSpec struct {
 	PolicyState string `json:"policyState,omitempty"`
 }
 
+// PolicyConfig is the Schema for the PolicyConfigs API
 // +kubebuilder:object:root=true
 // +kubebuilder:resource:shortName=gspolconfig,scope=Cluster
-// PolicyConfig is the Schema for the PolicyConfigs API
 // +k8s:openapi-gen=true
 type PolicyConfig struct {
 	metav1.TypeMeta   `json:",inline"`
@@ -37,9 +37,8 @@ type PolicyConfig struct {
 	Spec PolicyConfigSpec `json:"spec,omitempty"`
 }
 
-//+kubebuilder:object:root=true
-
 // PolicyConfigList contains a list of PolicyConfigs
+// +kubebuilder:object:root=true
 type PolicyConfigList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
