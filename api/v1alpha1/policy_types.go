@@ -35,6 +35,7 @@ type PolicyStatus struct {
 // Policy is the Schema for the Policies API
 // +kubebuilder:object:root=true
 // +kubebuilder:resource:shortName=gspol;gspolicy,scope=Cluster
+// +kubebuilder:printcolumn:name="Mode",type=string,JSONPath=`.spec.defaultPolicyState`
 // +k8s:openapi-gen=true
 type Policy struct {
 	metav1.TypeMeta   `json:",inline"`

@@ -32,6 +32,7 @@ type PolicyManifestSpec struct {
 // PolicyManifest is the Schema for the policymanifests API
 // +kubebuilder:object:root=true
 // +kubebuilder:resource:shortName=polman,scope=Cluster
+// +kubebuilder:printcolumn:name="Mode",type=string,JSONPath=`.spec.mode`
 // +k8s:openapi-gen=true
 type PolicyManifest struct {
 	metav1.TypeMeta   `json:",inline"`
