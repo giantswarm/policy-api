@@ -21,8 +21,8 @@ import (
 	"os/exec"
 	"time"
 
-	. "github.com/onsi/ginkgo/v2"
-	. "github.com/onsi/gomega"
+	. "github.com/onsi/ginkgo/v2" //nolint:revive,staticcheck
+	. "github.com/onsi/gomega"    //nolint:revive,staticcheck
 
 	"github.com/giantswarm/policy-api/test/utils"
 )
@@ -38,7 +38,7 @@ var _ = Describe("controller", Ordered, func() {
 		Expect(utils.InstallCertManager()).To(Succeed())
 
 		By("creating manager namespace")
-		cmd := exec.Command("kubectl", "create", "ns", namespace)
+		cmd := exec.Command("kubectl", "create", "ns", namespace) //nolint:gosec
 		_, _ = utils.Run(cmd)
 	})
 
@@ -50,7 +50,7 @@ var _ = Describe("controller", Ordered, func() {
 		utils.UninstallCertManager()
 
 		By("removing manager namespace")
-		cmd := exec.Command("kubectl", "delete", "ns", namespace)
+		cmd := exec.Command("kubectl", "delete", "ns", namespace) //nolint:gosec
 		_, _ = utils.Run(cmd)
 	})
 
@@ -63,7 +63,7 @@ var _ = Describe("controller", Ordered, func() {
 			var projectimage = "example.com/policy-api:v0.0.1"
 
 			By("building the manager(Operator) image")
-			cmd := exec.Command("make", "docker-build", fmt.Sprintf("IMG=%s", projectimage))
+			cmd := exec.Command("make", "docker-build", fmt.Sprintf("IMG=%s", projectimage)) //nolint:gosec
 			_, err = utils.Run(cmd)
 			ExpectWithOffset(1, err).NotTo(HaveOccurred())
 
@@ -72,12 +72,12 @@ var _ = Describe("controller", Ordered, func() {
 			ExpectWithOffset(1, err).NotTo(HaveOccurred())
 
 			By("installing CRDs")
-			cmd = exec.Command("make", "install")
+			cmd = exec.Command("make", "install") //nolint:gosec
 			_, err = utils.Run(cmd)
 			ExpectWithOffset(1, err).NotTo(HaveOccurred())
 
 			By("deploying the controller-manager")
-			cmd = exec.Command("make", "deploy", fmt.Sprintf("IMG=%s", projectimage))
+			cmd = exec.Command("make", "deploy", fmt.Sprintf("IMG=%s", projectimage)) //nolint:gosec
 			_, err = utils.Run(cmd)
 			ExpectWithOffset(1, err).NotTo(HaveOccurred())
 
@@ -104,7 +104,7 @@ var _ = Describe("controller", Ordered, func() {
 				ExpectWithOffset(2, controllerPodName).Should(ContainSubstring("controller-manager"))
 
 				// Validate pod status
-				cmd = exec.Command("kubectl", "get",
+				cmd = exec.Command("kubectl", "get", //nolint:gosec
 					"pods", controllerPodName, "-o", "jsonpath={.status.phase}",
 					"-n", namespace,
 				)

@@ -29,9 +29,9 @@ type PolicyManifestSpec struct {
 	AutomatedExceptions []Target `json:"automatedExceptions,omitempty"`
 }
 
+// PolicyManifest is the Schema for the policymanifests API
 // +kubebuilder:object:root=true
 // +kubebuilder:resource:shortName=polman,scope=Cluster
-// PolicyManifest is the Schema for the policymanifests API
 // +k8s:openapi-gen=true
 type PolicyManifest struct {
 	metav1.TypeMeta   `json:",inline"`
@@ -40,9 +40,8 @@ type PolicyManifest struct {
 	Spec PolicyManifestSpec `json:"spec,omitempty"`
 }
 
-//+kubebuilder:object:root=true
-
 // PolicyManifestList contains a list of PolicyManifest
+// +kubebuilder:object:root=true
 type PolicyManifestList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
