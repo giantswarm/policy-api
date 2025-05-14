@@ -1,13 +1,41 @@
-run:
-  deadline: 5m
-  allow-parallel-runners: true
+version: "2"
+
+linters:
+  default: none
+  enable:
+    - errcheck
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    - dupl
+    - goconst
+    - gocyclo
+    - lll
+    - misspell
+    - nakedret
+    - prealloc
+    - revive
+    - unconvert
+    - unparam
+    - copyloopvar
+    - ginkgolinter
+    - gosec
+    - asciicheck
+
+linters-settings:
+  revive:
+    rules:
+      - name: comment-spacings
+
+formatters:
+  enable:
+    - gofmt
+    - goimports
 
 issues:
-  # don't skip warning about doc comments
-  # don't exclude the default set of lint
-  exclude-use-default: false
-  # restore some of the defaults
-  # (fill in the rest as needed)
+  max-issues-per-linter: 0
+  max-same-issues: 0
   exclude-rules:
     - path: "api/*"
       linters:
@@ -16,25 +44,7 @@ issues:
       linters:
         - dupl
         - lll
-linters:
-  disable-all: true
-  enable:
-    - dupl
-    - errcheck
-    - exportloopref
-    - goconst
-    - gocyclo
-    - gofmt
-    - goimports
-    - gosimple
-    - govet
-    - ineffassign
-    - lll
-    - misspell
-    - nakedret
-    - prealloc
-    - staticcheck
-    - typecheck
-    - unconvert
-    - unparam
-    - unused
+
+run:
+  timeout: 5m
+  allow-parallel-runners: true

@@ -14,8 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// From https://github.com/kubernetes/kubernetes/blob/0712728ee9caab4d04ec0a751855aca8c891b690/pkg/generated/openapi/cmd/models-schema/main.go
+// From https://github.com/kubernetes/kubernetes/blob/
+// 0712728ee9caab4d04ec0a751855aca8c891b690/pkg/generated/openapi/cmd/models-schema/main.go
 
+// Package main provides the entry point for the policy-api controller
 package main
 
 import (
@@ -77,7 +79,12 @@ func output() error {
 	if err != nil {
 		return fmt.Errorf("error serializing api definitions: %w", err)
 	}
-	os.Stdout.Write(data)
+
+	_, err = os.Stdout.Write(data)
+	if err != nil {
+		return fmt.Errorf("error writing api definitions: %w", err)
+	}
+
 	return nil
 }
 

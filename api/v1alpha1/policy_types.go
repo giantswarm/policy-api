@@ -25,17 +25,17 @@ type PolicySpec struct {
 	DefaultPolicyState string `json:"defaultPolicyState,omitempty"`
 }
 
+// PolicyStatus defines the observed state of Policy
 // +kubebuilder:subresource:status
-// PolicyStatus defined the desired state of Policy
 type PolicyStatus struct {
 	TargetPolicyState string `json:"targetPolicyState,omitempty"`
 	ActualPolicyState string `json:"actualPolicyState,omitempty"`
 }
 
+// Policy is the Schema for the Policies API
 // +kubebuilder:object:root=true
 // +kubebuilder:resource:shortName=gspol;gspolicy,scope=Cluster
 // +kubebuilder:printcolumn:name="Mode",type=string,JSONPath=`.spec.defaultPolicyState`
-// Policy is the Schema for the Policies API
 // +k8s:openapi-gen=true
 type Policy struct {
 	metav1.TypeMeta   `json:",inline"`
@@ -45,9 +45,8 @@ type Policy struct {
 	Status PolicyStatus `json:"status,omitempty"`
 }
 
-//+kubebuilder:object:root=true
-
 // PolicyList contains a list of Policy
+// +kubebuilder:object:root=true
 type PolicyList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
