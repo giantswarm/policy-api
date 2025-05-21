@@ -26,6 +26,10 @@ helm.sh/chart: {{ include "chart" . | quote }}
 {{ include "labels.common" . }}
 {{- end -}}
 
+{{- define "labels.dummy" -}}
+application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
+{{- end -}}
+
 {{/*
 Common annotations
 */}}
