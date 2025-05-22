@@ -34,12 +34,6 @@ application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantsw
 Common annotations
 */}}
 {{- define "annotations.helm" -}}
-{{- if .Values.chartNameOverride }}
-meta.helm.sh/release-name: {{ .Values.chartNameOverride }}
-{{- end }}
-{{- if .Values.chartNamespaceOverride }}
-meta.helm.sh/release-namespace: {{ .Values.chartNamespaceOverride }}
-{{- end }}
 helm.sh/resource-policy: keep
 {{- end -}}
 

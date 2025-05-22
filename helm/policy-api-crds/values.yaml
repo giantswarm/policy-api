@@ -1,5 +1,2 @@
-# Overrides Helm anotations for easy CRD adoption
-chartNameOverride: "policy-meta-operator"
-chartNamespaceOverride: "policy-system"
-
 annotations: {}
+labels: {}

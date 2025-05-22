@@ -5,11 +5,8 @@
         "annotations": {
             "type": "object"
         },
-        "chartNameOverride": {
-            "type": "string"
-        },
-        "chartNamespaceOverride": {
-            "type": "string"
+        "labels": {
+            "type": "object"
         }
     }
 }
