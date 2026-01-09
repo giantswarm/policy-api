@@ -1,1 +1,1 @@
-CVE-2025-22872 until=2026-01-09 # golang.org/x/net@v0.37.0
+CVE-2025-22872 until=2026-02-08 # golang.org/x/net@v0.37.0
