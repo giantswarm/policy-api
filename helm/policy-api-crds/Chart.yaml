@@ -5,4 +5,6 @@ home: https://github.com/giantswarm/policy-api
 icon: https://s.giantswarm.io/app-icons/giantswarm/1/light.svg
 version: 0.0.6
 annotations:
-  application.giantswarm.io/team: shield
+  io.giantswarm.application.audience: all
+  io.giantswarm.application.managed: "true"
+  io.giantswarm.application.team: shield
