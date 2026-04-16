@@ -11,7 +11,7 @@ require (
 	k8s.io/code-generator v0.35.3
 	k8s.io/kube-openapi v0.0.0-20260330154417-16be699c7b31
 	sigs.k8s.io/controller-runtime v0.23.3
-	sigs.k8s.io/controller-tools v0.16.5
+	sigs.k8s.io/controller-tools v0.20.1
 	sigs.k8s.io/structured-merge-diff/v6 v6.4.0
 )
 
@@ -53,8 +53,8 @@ require (
 	github.com/prometheus/common v0.66.1 // indirect
 	github.com/prometheus/procfs v0.16.1 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
-	github.com/spf13/cobra v1.10.0 // indirect
-	github.com/spf13/pflag v1.0.9 // indirect
+	github.com/spf13/cobra v1.10.2 // indirect
+	github.com/spf13/pflag v1.0.10 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.27.0 // indirect
