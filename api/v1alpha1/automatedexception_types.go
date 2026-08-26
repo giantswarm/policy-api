@@ -53,5 +53,5 @@ type AutomatedExceptionList struct {
 }
 
 func init() {
-	SchemeBuilder.Register(&AutomatedException{}, &AutomatedExceptionList{})
+	addKnownTypes(&AutomatedException{}, &AutomatedExceptionList{})
 }

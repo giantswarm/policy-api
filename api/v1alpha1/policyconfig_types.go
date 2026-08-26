@@ -46,5 +46,5 @@ type PolicyConfigList struct {
 }
 
 func init() {
-	SchemeBuilder.Register(&PolicyConfig{}, &PolicyConfigList{})
+	addKnownTypes(&PolicyConfig{}, &PolicyConfigList{})
 }
