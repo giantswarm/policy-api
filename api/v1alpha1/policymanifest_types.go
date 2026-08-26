@@ -50,5 +50,5 @@ type PolicyManifestList struct {
 }
 
 func init() {
-	SchemeBuilder.Register(&PolicyManifest{}, &PolicyManifestList{})
+	addKnownTypes(&PolicyManifest{}, &PolicyManifestList{})
 }

@@ -61,5 +61,5 @@ type PolicyExceptionList struct {
 }
 
 func init() {
-	SchemeBuilder.Register(&PolicyException{}, &PolicyExceptionList{})
+	addKnownTypes(&PolicyException{}, &PolicyExceptionList{})
 }
