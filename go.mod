@@ -1,6 +1,6 @@
 module github.com/giantswarm/policy-api
 
-go 1.26.0
+go 1.27
 
 require (
 	github.com/ahmetb/gen-crd-api-reference-docs v0.3.0
@@ -12,7 +12,7 @@ require (
 	k8s.io/kube-openapi v0.0.0-20260706235625-cdb1db5517a0
 	sigs.k8s.io/controller-runtime v0.24.1
 	sigs.k8s.io/controller-tools v0.21.0
-	sigs.k8s.io/structured-merge-diff/v6 v6.4.2
+	sigs.k8s.io/structured-merge-diff/v7 v7.0.0
 )
 
 require (
@@ -92,6 +92,7 @@ require (
 	k8s.io/utils v0.0.0-20260319190234-28399d86e0b5 // indirect
 	sigs.k8s.io/json v0.0.0-20250730193827-2d320260d730 // indirect
 	sigs.k8s.io/randfill v1.0.0 // indirect
+	sigs.k8s.io/structured-merge-diff/v6 v6.4.1 // indirect
 	sigs.k8s.io/yaml v1.6.0 // indirect
 )
 
