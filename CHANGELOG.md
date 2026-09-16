@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- Remove the unused `test/e2e` and `test/utils` packages. They were kubebuilder scaffold that checked for a controller-manager pod this repo does not have, and called `make docker-build` and `make deploy`, which do not exist here. Chart testing happens through app-test-suite in `tests/ats`.
+
 ### Changed
 
 - Replace controller-runtime's deprecated `scheme.Builder` with `runtime.SchemeBuilder`, dropping the controller-runtime dependency from the api package. `AddToScheme` is unchanged; `SchemeBuilder` is now a `*runtime.SchemeBuilder`.
