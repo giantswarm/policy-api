@@ -49,9 +49,9 @@ type PolicyExceptionSpec struct {
 
 // Condition types of a PolicyException, written by kyverno-policy-operator.
 const (
-	// PolicyExceptionReady is True when the exception covers what was asked for: every Kyverno
-	// PolicyException generated for it is applied and every target is translated.
-	// PoliciesResolved does not affect it.
+	// PolicyExceptionReady is True when every Kyverno PolicyException generated for it is applied,
+	// stale ones are removed, and every target is translated. It does not check that the listed
+	// policies exist; PoliciesResolved reports that.
 	PolicyExceptionReady = "Ready"
 	// PolicyExceptionPoliciesResolved is False when a listed policy matches no CEL policy. It is
 	// informational and does not affect Ready, so health checks on Ready (Flux wait, kstatus)

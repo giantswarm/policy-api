@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add a `status` subresource to `PolicyException` for kyverno-policy-operator: `Ready`, `PoliciesResolved` and `TargetsTranslated` conditions, the generated Kyverno PolicyExceptions, unresolved policies and unsupported target kinds. `Ready` also covers untranslated targets; `PoliciesResolved` is informational and reports legacy-only policies as `NotMigrated`. `kubectl get gspolex` shows `Ready`, `Reason` and `Policies`.
+- Add a `status` subresource to `PolicyException` for kyverno-policy-operator: `Ready`, `PoliciesResolved` and `TargetsTranslated` conditions, the generated Kyverno PolicyExceptions, unresolved policies and unsupported target kinds. `Ready` requires the generated exceptions to be applied and every target translated; `PoliciesResolved` is informational and reports legacy-only policies as `NotMigrated`. `kubectl get gspolex` shows `Ready`, `Reason` and `Policies`.
 - Add `io.giantswarm.application.audience` and `io.giantswarm.application.managed` chart annotations for Backstage visibility.
 - Push to the `default` catalog.
 

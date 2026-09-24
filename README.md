@@ -6,7 +6,7 @@
 
 - `observedGeneration`: the `metadata.generation` the status describes.
 - `conditions`:
-  - `Ready`: whether the exception covers what was asked for: every Kyverno PolicyException generated for it is applied and every target is translated. Reasons: `Reconciled`, `InvalidNamespace`, `NameTaken`, `LookupFailed`, `ApplyFailed`, `DeleteFailed`, `UnsupportedKind`.
+  - `Ready`: whether every Kyverno PolicyException generated for it is applied, stale ones are removed, and every target is translated. It does not check that the listed policies exist; see `PoliciesResolved` (the `Policies` column). Reasons: `Reconciled`, `InvalidNamespace`, `NameTaken`, `LookupFailed`, `ApplyFailed`, `DeleteFailed` (stale generated exceptions could not be removed), `UnsupportedKind`.
     When several checks fail, `Ready` takes the first failing reason in that order, and its message lists all of them.
   - `PoliciesResolved`: whether every listed policy matches a CEL policy. It is informational and does not affect `Ready`, so health checks on `Ready` (Flux `wait`, kstatus) are not blocked by policies still being migrated. Reasons:
     - `Resolved`: every listed policy matches a CEL policy.
