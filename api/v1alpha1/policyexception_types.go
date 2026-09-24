@@ -22,6 +22,10 @@ import (
 
 //+kubebuilder:object:root=true
 //+kubebuilder:resource:shortName=gspolex
+//+kubebuilder:subresource:status
+//+kubebuilder:printcolumn:name="Ready",type=string,JSONPath=`.status.conditions[?(@.type=="Ready")].status`
+//+kubebuilder:printcolumn:name="Reason",type=string,JSONPath=`.status.conditions[?(@.type=="Ready")].reason`
+//+kubebuilder:printcolumn:name="Age",type=date,JSONPath=`.metadata.creationTimestamp`
 
 // PolicyException is the Schema for the policyexceptions API
 // +k8s:openapi-gen=true
@@ -29,7 +33,8 @@ type PolicyException struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec PolicyExceptionSpec `json:"spec,omitempty"`
+	Spec   PolicyExceptionSpec   `json:"spec,omitempty"`
+	Status PolicyExceptionStatus `json:"status,omitempty"`
 }
 
 // PolicyExceptionSpec defines the desired state of PolicyException
@@ -39,6 +44,75 @@ type PolicyExceptionSpec struct {
 
 	// Targes defines the list of target workloads where the exceptions will be applied
 	Targets []Target `json:"targets"`
+}
+
+// Condition types of a PolicyException, written by kyverno-policy-operator.
+const (
+	// PolicyExceptionReady is True when every Kyverno PolicyException generated for it is in place.
+	PolicyExceptionReady = "Ready"
+	// PolicyExceptionPoliciesResolved is False when a listed policy matches no CEL policy.
+	PolicyExceptionPoliciesResolved = "PoliciesResolved"
+	// PolicyExceptionTargetsTranslated is False when a target cannot be expressed in a CEL exception.
+	PolicyExceptionTargetsTranslated = "TargetsTranslated"
+)
+
+// Reasons of the Ready condition.
+const (
+	ReasonReconciled       = "Reconciled"
+	ReasonNameTaken        = "NameTaken"
+	ReasonApplyFailed      = "ApplyFailed"
+	ReasonLookupFailed     = "LookupFailed"
+	ReasonDeleteFailed     = "DeleteFailed"
+	ReasonInvalidNamespace = "InvalidNamespace"
+)
+
+// Reasons of the PoliciesResolved condition.
+const (
+	ReasonResolved       = "Resolved"
+	ReasonPolicyNotFound = "PolicyNotFound"
+)
+
+// Reasons of the TargetsTranslated condition.
+const (
+	ReasonTranslated      = "Translated"
+	ReasonUnsupportedKind = "UnsupportedKind"
+)
+
+// PolicyExceptionStatus defines the observed state of PolicyException. kyverno-policy-operator
+// writes it.
+type PolicyExceptionStatus struct {
+	// ObservedGeneration is the metadata.generation the status was computed for.
+	// +optional
+	ObservedGeneration int64 `json:"observedGeneration,omitempty"`
+
+	// Conditions are Ready, PoliciesResolved and TargetsTranslated.
+	// +listType=map
+	// +listMapKey=type
+	// +optional
+	Conditions []metav1.Condition `json:"conditions,omitempty"`
+
+	// GeneratedExceptions are the Kyverno PolicyExceptions written for this PolicyException.
+	// +listType=atomic
+	// +optional
+	GeneratedExceptions []GeneratedException `json:"generatedExceptions,omitempty"`
+
+	// UnresolvedPolicies are listed policies that match no CEL policy yet.
+	// +listType=atomic
+	// +optional
+	UnresolvedPolicies []string `json:"unresolvedPolicies,omitempty"`
+
+	// UnsupportedTargetKinds are target kinds left out of the CEL exception, such as "Pod/exec".
+	// +listType=atomic
+	// +optional
+	UnsupportedTargetKinds []string `json:"unsupportedTargetKinds,omitempty"`
+}
+
+// GeneratedException references a Kyverno PolicyException generated for a PolicyException.
+type GeneratedException struct {
+	// APIVersion is policies.kyverno.io/v1 or kyverno.io/v2.
+	APIVersion string `json:"apiVersion"`
+	Namespace  string `json:"namespace"`
+	Name       string `json:"name"`
 }
 
 // Target defines a resource to which a PolicyException applies
