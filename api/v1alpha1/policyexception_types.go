@@ -52,7 +52,9 @@ const (
 	// PolicyException generated for it is applied and every target is translated.
 	// PoliciesResolved does not affect it.
 	PolicyExceptionReady = "Ready"
-	// PolicyExceptionPoliciesResolved is False when a listed policy matches no CEL policy.
+	// PolicyExceptionPoliciesResolved is False when a listed policy matches no CEL policy. It is
+	// informational and does not affect Ready, so health checks on Ready (Flux wait, kstatus)
+	// are not blocked by policies still being migrated.
 	PolicyExceptionPoliciesResolved = "PoliciesResolved"
 	// PolicyExceptionTargetsTranslated is False when a target cannot be expressed in a CEL exception.
 	PolicyExceptionTargetsTranslated = "TargetsTranslated"
@@ -70,9 +72,17 @@ const (
 	ReasonDeleteFailed     = "DeleteFailed"
 )
 
-// Reasons of the PoliciesResolved condition.
+// Reasons of the PoliciesResolved condition. PolicyNotFound wins over NotMigrated, and the
+// message names the policies for each.
 const (
-	ReasonResolved       = "Resolved"
+	// ReasonResolved means every listed policy matches a CEL policy.
+	ReasonResolved = "Resolved"
+	// ReasonNotMigrated means a listed policy matches only a legacy ClusterPolicy. The legacy
+	// exception covers it, and the CEL exception takes over once the policy is migrated.
+	// This is expected during the migration.
+	ReasonNotMigrated = "NotMigrated"
+	// ReasonPolicyNotFound means a listed policy matches no policy at all, for example a typo,
+	// a removed policy, or a policy not installed yet.
 	ReasonPolicyNotFound = "PolicyNotFound"
 )
 
@@ -102,7 +112,8 @@ type PolicyExceptionStatus struct {
 	// +optional
 	GeneratedExceptions []GeneratedException `json:"generatedExceptions,omitempty"`
 
-	// UnresolvedPolicies are listed policies that match no CEL policy yet.
+	// UnresolvedPolicies are listed policies that match no CEL policy: those that match only a
+	// legacy ClusterPolicy and those that match no policy at all.
 	// +listType=atomic
 	// +optional
 	UnresolvedPolicies []string `json:"unresolvedPolicies,omitempty"`

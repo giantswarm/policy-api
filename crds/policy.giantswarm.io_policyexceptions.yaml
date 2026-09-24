@@ -190,8 +190,9 @@ spec:
                 format: int64
                 type: integer
               unresolvedPolicies:
-                description: UnresolvedPolicies are listed policies that match no
-                  CEL policy yet.
+                description: |-
+                  UnresolvedPolicies are listed policies that match no CEL policy: those that match only a
+                  legacy ClusterPolicy and those that match no policy at all.
                 items:
                   type: string
                 type: array
