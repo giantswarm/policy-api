@@ -29,6 +29,9 @@ spec:
     - jsonPath: .status.conditions[?(@.type=="Ready")].reason
       name: Reason
       type: string
+    - jsonPath: .status.conditions[?(@.type=="PoliciesResolved")].status
+      name: Policies
+      type: string
     - jsonPath: .metadata.creationTimestamp
       name: Age
       type: date

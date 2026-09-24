@@ -17,4 +17,4 @@
 - `unresolvedPolicies`: listed policies that match no CEL policy, whether they match only a legacy ClusterPolicy or no policy at all.
 - `unsupportedTargetKinds`: target kinds left out of the CEL exception, such as `Pod/exec`.
 
-`kubectl get gspolex` shows the `Ready` condition's status and reason.
+`kubectl get gspolex` shows the `Ready` condition's status and reason, and the `PoliciesResolved` condition's status as `Policies`.
