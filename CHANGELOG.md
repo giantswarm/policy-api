@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Move `cmd/main.go` to the module root, so the generated `go-build` job finds a main package to build.
 - Replace controller-runtime's deprecated `scheme.Builder` with `runtime.SchemeBuilder`, dropping the controller-runtime dependency from the api package. `AddToScheme` is unchanged; `SchemeBuilder` is now a `*runtime.SchemeBuilder`.
 
 ### Added
