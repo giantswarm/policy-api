@@ -18,10 +18,10 @@ package v1alpha1
 
 import (
 	"encoding/json"
-	"reflect"
 	"strings"
 	"testing"
 
+	"k8s.io/apimachinery/pkg/api/equality"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -68,7 +68,7 @@ func TestPolicyExceptionStatusJSONRoundTrip(t *testing.T) {
 	if err := json.Unmarshal(data, &out); err != nil {
 		t.Fatalf("unmarshal: %v", err)
 	}
-	if !reflect.DeepEqual(in.Status, out.Status) {
+	if !equality.Semantic.DeepEqual(in.Status, out.Status) {
 		t.Errorf("round trip changed status:\n got %+v\nwant %+v", out.Status, in.Status)
 	}
 }
@@ -92,7 +92,7 @@ func TestPolicyExceptionDeepCopyDoesNotAliasStatus(t *testing.T) {
 	out.Status.UnresolvedPolicies[0] = "other-policy"
 	out.Status.UnsupportedTargetKinds[0] = "Pod/attach"
 
-	if !reflect.DeepEqual(in.Status, testStatus()) {
+	if !equality.Semantic.DeepEqual(in.Status, testStatus()) {
 		t.Errorf("mutating the copy changed the original: %+v", in.Status)
 	}
 }
