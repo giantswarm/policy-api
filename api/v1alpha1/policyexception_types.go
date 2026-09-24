@@ -48,7 +48,9 @@ type PolicyExceptionSpec struct {
 
 // Condition types of a PolicyException, written by kyverno-policy-operator.
 const (
-	// PolicyExceptionReady is True when every Kyverno PolicyException generated for it is in place.
+	// PolicyExceptionReady is True when the exception covers what was asked for: every Kyverno
+	// PolicyException generated for it is applied and every target is translated.
+	// PoliciesResolved does not affect it.
 	PolicyExceptionReady = "Ready"
 	// PolicyExceptionPoliciesResolved is False when a listed policy matches no CEL policy.
 	PolicyExceptionPoliciesResolved = "PoliciesResolved"
@@ -56,14 +58,16 @@ const (
 	PolicyExceptionTargetsTranslated = "TargetsTranslated"
 )
 
-// Reasons of the Ready condition.
+// Reasons of the Ready condition. When several checks fail, Ready takes the first failing
+// reason in the order InvalidNamespace, NameTaken, LookupFailed, ApplyFailed, DeleteFailed,
+// UnsupportedKind, and its message lists all of them.
 const (
 	ReasonReconciled       = "Reconciled"
-	ReasonNameTaken        = "NameTaken"
-	ReasonApplyFailed      = "ApplyFailed"
-	ReasonLookupFailed     = "LookupFailed"
-	ReasonDeleteFailed     = "DeleteFailed"
 	ReasonInvalidNamespace = "InvalidNamespace"
+	ReasonNameTaken        = "NameTaken"
+	ReasonLookupFailed     = "LookupFailed"
+	ReasonApplyFailed      = "ApplyFailed"
+	ReasonDeleteFailed     = "DeleteFailed"
 )
 
 // Reasons of the PoliciesResolved condition.
@@ -74,7 +78,9 @@ const (
 
 // Reasons of the TargetsTranslated condition.
 const (
-	ReasonTranslated      = "Translated"
+	ReasonTranslated = "Translated"
+	// ReasonUnsupportedKind means a target kind cannot be expressed in a CEL exception. It is a
+	// reason of both TargetsTranslated and Ready.
 	ReasonUnsupportedKind = "UnsupportedKind"
 )
 

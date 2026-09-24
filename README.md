@@ -6,7 +6,8 @@
 
 - `observedGeneration`: the `metadata.generation` the status describes.
 - `conditions`:
-  - `Ready`: whether every Kyverno PolicyException generated for it is in place. Reasons: `Reconciled`, `NameTaken`, `ApplyFailed`, `LookupFailed`, `DeleteFailed`, `InvalidNamespace`.
+  - `Ready`: whether the exception covers what was asked for: every Kyverno PolicyException generated for it is applied and every target is translated. Reasons: `Reconciled`, `InvalidNamespace`, `NameTaken`, `LookupFailed`, `ApplyFailed`, `DeleteFailed`, `UnsupportedKind`.
+    When several checks fail, `Ready` takes the first failing reason in that order, and its message lists all of them.
   - `PoliciesResolved`: whether every listed policy matches a CEL policy. Reasons: `Resolved`, `PolicyNotFound`.
   - `TargetsTranslated`: whether every target can be expressed in a CEL exception. Reasons: `Translated`, `UnsupportedKind`.
 - `generatedExceptions`: the `apiVersion`, `namespace` and `name` of each Kyverno PolicyException generated for it.
