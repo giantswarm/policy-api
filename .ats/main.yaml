@@ -1,0 +1,6 @@
+# app-test-suite (ATS >= 1.0) config for the generated execute-chart-tests job,
+# which creates the kind cluster and hands ATS its kubeconfig. ATS installs the
+# packaged chart with Helm and tests/ats checks the CRDs it ships.
+#
+# functional and upgrade stay skipped: there is no second scenario yet.
+skip-steps: [functional, upgrade]
