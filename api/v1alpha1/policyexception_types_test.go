@@ -73,7 +73,7 @@ func TestPolicyExceptionStatusJSONRoundTrip(t *testing.T) {
 	}
 }
 
-func TestPolicyExceptionEmptyStatusIsOmitted(t *testing.T) {
+func TestPolicyExceptionZeroStatusMarshalsToEmptyObject(t *testing.T) {
 	data, err := json.Marshal(PolicyExceptionStatus{})
 	if err != nil {
 		t.Fatalf("marshal: %v", err)
