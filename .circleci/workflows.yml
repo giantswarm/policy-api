@@ -5,7 +5,7 @@
 # workflow in .circleci/config.yml merges into this file at pipeline runtime.
 version: 2.1
 orbs:
-  architect: giantswarm/architect@10.11.0
+  architect: giantswarm/architect@10.12.1
 
 workflows:
   build:
@@ -21,6 +21,9 @@ workflows:
         # override their own `make test`. See devctl makefile gen and the
         # make-target-ci-interface ADR.
         test_target: test
+        # Main package to compile. This repo's module root is not a main package,
+        # so building "." would yield a Go archive rather than a binary.
+        path: ./cmd
         filters:
           tags:
             only: /^v.*/
@@ -34,8 +37,7 @@ workflows:
         name: build-chart
         app_catalog: default-catalog
         app_catalog_test: default-test-catalog
-        chart: policy-api-crds
-        explicit_allow_chart_name_mismatch: true
+        chart: policy-api
         # `appVersion` is the version of the packaged application, and this chart
         # packages an app built elsewhere, so that app's version is what
         # Chart.yaml declares. Keep it; the chart version is still stamped.
@@ -51,6 +53,7 @@ workflows:
           branches:
             ignore:
             - main
+            - /^release-v?[0-9]+(\.[0-9]+)?\.x$/
 
     # Branch: run chart tests after build-chart. When branchPublish pushes a dev
     # image, the test also waits on push-to-registries -- run-tests-with-ats
@@ -75,6 +78,7 @@ workflows:
           branches:
             ignore:
             - main
+            - /^release-v?[0-9]+(\.[0-9]+)?\.x$/
 
     # Branch chart push (opt-in): publish the dev chart after tests + the amd64
     # branch image, coupled with push-to-registries above.
@@ -84,8 +88,7 @@ workflows:
         name: push-chart
         app_catalog: default-catalog
         app_catalog_test: default-test-catalog
-        chart: policy-api-crds
-        explicit_allow_chart_name_mismatch: true
+        chart: policy-api
         # `appVersion` is the version of the packaged application, and this chart
         # packages an app built elsewhere, so that app's version is what
         # Chart.yaml declares. Keep it; the chart version is still stamped.
@@ -96,6 +99,7 @@ workflows:
           branches:
             ignore:
             - main
+            - /^release-v?[0-9]+(\.[0-9]+)?\.x$/
 
     # Tag: push the chart after build-chart (+ the gsoci image). The chart
     # tests ran on the branch (execute-chart-tests) and the tag is cut from the
@@ -111,8 +115,7 @@ workflows:
         name: push-chart-release
         app_catalog: default-catalog
         app_catalog_test: default-test-catalog
-        chart: policy-api-crds
-        explicit_allow_chart_name_mismatch: true
+        chart: policy-api
         # `appVersion` is the version of the packaged application, and this chart
         # packages an app built elsewhere, so that app's version is what
         # Chart.yaml declares. Keep it; the chart version is still stamped.
