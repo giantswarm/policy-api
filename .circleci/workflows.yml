@@ -23,7 +23,7 @@ workflows:
         test_target: test
         # Main package to compile. This repo's module root is not a main package,
         # so building "." would yield a Go archive rather than a binary.
-        path: ./cmd
+        path: ./cmd/modelschema
         filters:
           tags:
             only: /^v.*/
@@ -37,7 +37,10 @@ workflows:
         name: build-chart
         app_catalog: default-catalog
         app_catalog_test: default-test-catalog
-        chart: policy-api
+        chart: policy-api-crds
+        # The chart is not named after the repo (with or without -app), which
+        # the orb's chart name check otherwise rejects.
+        explicit_allow_chart_name_mismatch: true
         # `appVersion` is the version of the packaged application, and this chart
         # packages an app built elsewhere, so that app's version is what
         # Chart.yaml declares. Keep it; the chart version is still stamped.
@@ -88,7 +91,10 @@ workflows:
         name: push-chart
         app_catalog: default-catalog
         app_catalog_test: default-test-catalog
-        chart: policy-api
+        chart: policy-api-crds
+        # The chart is not named after the repo (with or without -app), which
+        # the orb's chart name check otherwise rejects.
+        explicit_allow_chart_name_mismatch: true
         # `appVersion` is the version of the packaged application, and this chart
         # packages an app built elsewhere, so that app's version is what
         # Chart.yaml declares. Keep it; the chart version is still stamped.
@@ -115,7 +121,10 @@ workflows:
         name: push-chart-release
         app_catalog: default-catalog
         app_catalog_test: default-test-catalog
-        chart: policy-api
+        chart: policy-api-crds
+        # The chart is not named after the repo (with or without -app), which
+        # the orb's chart name check otherwise rejects.
+        explicit_allow_chart_name_mismatch: true
         # `appVersion` is the version of the packaged application, and this chart
         # packages an app built elsewhere, so that app's version is what
         # Chart.yaml declares. Keep it; the chart version is still stamped.
