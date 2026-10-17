@@ -7,32 +7,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-09-28
+
 ### Fixed
 
 - The `helm.sh/chart` label is valid for long chart versions: the 63-character cut trims the whole trailing run of `-`, `.` and `_`.
+
+## [0.1.0] - 2026-09-24
+
+### Added
+
+- Add a `status` subresource to `PolicyException` for kyverno-policy-operator: `Ready`, `PoliciesResolved` and `TargetsTranslated` conditions, the generated Kyverno PolicyExceptions, unresolved policies and unsupported target kinds. `Ready` requires the generated exceptions to be applied and every target translated; `PoliciesResolved` is informational and reports legacy-only policies as `NotMigrated`. `kubectl get gspolex` shows `Ready`, `Reason` and `Policies`.
+
+### Changed
+
+- Move `cmd/main.go` to the module root, so the generated `go-build` job finds a main package to build.
+
+## [0.0.14] - 2026-09-24
 
 ### Removed
 
 - Remove the unused `test/e2e` and `test/utils` packages. They were kubebuilder scaffold that checked for a controller-manager pod this repo does not have, and called `make docker-build` and `make deploy`, which do not exist here. Chart testing happens through app-test-suite in `tests/ats`.
 
+## [0.0.13] - 2026-09-24
+
+### Removed
+
+- Remove the unused `Dockerfile`. The repo ships only the API types and the CRD chart, so CI no longer builds an image.
+
+## [0.0.10] - 2026-08-26
+
 ### Changed
 
-- Move `cmd/main.go` to the module root, so the generated `go-build` job finds a main package to build.
 - Replace controller-runtime's deprecated `scheme.Builder` with `runtime.SchemeBuilder`, dropping the controller-runtime dependency from the api package. `AddToScheme` is unchanged; `SchemeBuilder` is now a `*runtime.SchemeBuilder`.
+
+## [0.0.7] - 2026-07-27
 
 ### Added
 
-- Add a `status` subresource to `PolicyException` for kyverno-policy-operator: `Ready`, `PoliciesResolved` and `TargetsTranslated` conditions, the generated Kyverno PolicyExceptions, unresolved policies and unsupported target kinds. `Ready` requires the generated exceptions to be applied and every target translated; `PoliciesResolved` is informational and reports legacy-only policies as `NotMigrated`. `kubectl get gspolex` shows `Ready`, `Reason` and `Policies`.
 - Add `io.giantswarm.application.audience` and `io.giantswarm.application.managed` chart annotations for Backstage visibility.
 - Push to the `default` catalog.
 
 ### Changed
 
 - Migrate chart metadata annotations to OCI-compatible format.
-
-### Removed
-
-- Remove the unused `Dockerfile`. The repo ships only the API types and the CRD chart, so CI no longer builds an image.
 
 ## [0.0.6] - 2025-05-22
 
@@ -79,7 +97,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First release of the `policy-api` project.
 
-[Unreleased]: https://github.com/giantswarm/policy-api/compare/v0.0.6...HEAD
+[Unreleased]: https://github.com/giantswarm/policy-api/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/giantswarm/policy-api/compare/v0.1.0...v0.1.1
+[0.1.0]: https://github.com/giantswarm/policy-api/compare/v0.0.14...v0.1.0
+[0.0.14]: https://github.com/giantswarm/policy-api/compare/v0.0.13...v0.0.14
+[0.0.13]: https://github.com/giantswarm/policy-api/compare/v0.0.10...v0.0.13
+[0.0.10]: https://github.com/giantswarm/policy-api/compare/v0.0.7...v0.0.10
+[0.0.7]: https://github.com/giantswarm/policy-api/compare/v0.0.6...v0.0.7
 [0.0.6]: https://github.com/giantswarm/policy-api/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/giantswarm/policy-api/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/giantswarm/policy-api/compare/v0.0.3...v0.0.4
