@@ -5,7 +5,7 @@ go 1.27.0
 require (
 	github.com/ahmetb/gen-crd-api-reference-docs v0.3.0
 	k8s.io/apimachinery v0.37.2
-	k8s.io/client-go v0.37.2
+	k8s.io/client-go v1.5.2
 	k8s.io/code-generator v0.37.2
 	k8s.io/kube-openapi v0.0.0-20260721132016-d427ff9ee9ad
 	sigs.k8s.io/controller-runtime v0.25.2
